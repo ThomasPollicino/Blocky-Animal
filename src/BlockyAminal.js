@@ -97,9 +97,17 @@ const CIRCLE=2;
 let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=10;
 let g_selectedType=POINT;
-let g_globalAngle=0;
+let g_globalAngle=30;
 let g_legAngle=0;
 let g_bodyAngle=0;
+let g_tailAngle=0;
+let g_tailAngle2=0;
+let g_mouthAngle=0;
+let g_headAngle=0;
+let g_leftArmAngle=0;
+let g_rightArmAngle=0;
+let g_spikeColor=0.3;
+let g_bodyAngle2=0;
 
 
 //let g_segNum=10;
@@ -109,6 +117,14 @@ function addActionsForHtmlUI(){
     document.getElementById('angleSlide').addEventListener('mousemove', function() {g_globalAngle=this.value; renderAllShapes(); });
     document.getElementById('legSlide').addEventListener('mousemove', function() {g_legAngle=this.value; renderAllShapes(); });
     document.getElementById('bodySlide').addEventListener('mousemove', function() {g_bodyAngle=this.value; renderAllShapes(); });
+    document.getElementById('bodySlide2').addEventListener('mousemove', function() {g_bodyAngle2=this.value; renderAllShapes(); });
+    document.getElementById('tailSlide').addEventListener('mousemove', function() {g_tailAngle=this.value; renderAllShapes(); });
+    document.getElementById('tailSlide2').addEventListener('mousemove', function() {g_tailAngle2=this.value; renderAllShapes(); });
+    document.getElementById('mouthSlide').addEventListener('mousemove', function() {g_mouthAngle=this.value; renderAllShapes(); });
+    document.getElementById('headSlide').addEventListener('mousemove', function() {g_headAngle=this.value; renderAllShapes(); });
+    document.getElementById('leftArmSlide').addEventListener('mousemove', function() {g_leftArmAngle=this.value; renderAllShapes(); });
+    document.getElementById('rightArmSlide').addEventListener('mousemove', function() {g_rightArmAngle=this.value; renderAllShapes(); });
+    document.getElementById('spikeColorSlide').addEventListener('mousemove', function() {g_spikeColor = parseFloat(this.value); renderAllShapes(); });
 
 
 
@@ -246,7 +262,7 @@ function renderAllShapes(){
   tRightleg.matrix = rightLegCoord;
   tRightleg.matrix.translate(0,0.60,-0.01);
   tRightleg.matrix.rotate(-g_legAngle*1.5,1,0,0);
-  tRightleg.matrix.scale(0.45,0.7,0.351);
+  tRightleg.matrix.scale(0.45,0.7,0.551);
   tRightleg.matrix.translate(-0.05,-0.25,0);
   tRightleg.render();
 
@@ -257,7 +273,7 @@ function renderAllShapes(){
   tLeftleg.matrix.translate(0,0.60,-0.01);
   tLeftleg.matrix.rotate(-g_legAngle*1.5,1,0,0);
   var TLegCoord = new Matrix4(tLeftleg.matrix);
-  tLeftleg.matrix.scale(0.45,0.7,0.351);
+  tLeftleg.matrix.scale(0.45,0.7,0.551);
   tLeftleg.matrix.translate(-0.05,-0.25,0);
   tLeftleg.render();
 
@@ -267,37 +283,295 @@ function renderAllShapes(){
 
   TLegCoord.translate(0,0,0.20);
   body.matrix=TLegCoord;
-  body.matrix.translate(0.05,0.2,-0.05);
+  body.matrix.translate(0.05,0.2,0.1);
   body.matrix.rotate(g_bodyAngle,1,0,0);
+  body.matrix.rotate(g_bodyAngle2,0,1,0);
   var bodyCoor = new Matrix4(body.matrix);
+  var bodyCoorChest = new Matrix4(body.matrix);
+  var bodyCoorNeck = new Matrix4(body.matrix);
+  var bodyCoorArmRight = new Matrix4(body.matrix);
+  var bodyCoorArmLeft = new Matrix4(body.matrix);
   body.matrix.translate(0,0,-0.20);
   body.matrix.scale(1.1,1.7,0.5);
   body.render();
+
+  //ArmRight
+  var armRight = new Cube();
+  armRight.color=[0.2,0.2,0.2,1.0];
+  armRight.matrix = bodyCoorArmRight;
+  armRight.matrix.translate(1,0.90,0.1);
+  armRight.matrix.rotate(-g_rightArmAngle,1,0,0);
+  armRight.matrix.scale(0.4,0.4,-1.2);
+  armRight.render();
+
+  //ArmLeft
+  var armLeft = new Cube();
+  armLeft.color=[0.2,0.2,0.2,1.0];
+  armLeft.matrix = bodyCoorArmLeft;
+  armLeft.matrix.translate(-0.4,0.90,0.1);
+  armLeft.matrix.rotate(-g_leftArmAngle,1,0,0);
+  armLeft.matrix.scale(0.4,0.4,-1.2);
+  armLeft.render();
+
+
+
+  //Chest
+  var chest = new Cube();
+  chest.color=[0.2,0.2,0.2,1.0];
+  chest.matrix = bodyCoorChest;
+  chest.matrix.translate(0,0.25,-0.25);
+  var chestCoord = new Matrix4(chest.matrix);
+  chest.matrix.scale(1,1.4,0.2);
+  chest.render();
+
+  //Peck
+  var peck = new Cube();
+  peck.color=[0.2,0.2,0.2,1.0];
+  peck.matrix = chestCoord;
+  peck.matrix.translate(0.15,0.50,-0.05);
+  peck.matrix.scale(0.8,0.8,0.1);
+  peck.render();
+
+  //Neck
+  var neck = new Cube();
+  neck.color=[0.2,0.2,0.2,1.0];
+  neck.matrix = bodyCoorNeck;
+  neck.matrix.translate(0.25,1.6,-0.25);
+  var neckCoord = new Matrix4(neck.matrix);
+  neck.matrix.scale(0.6,0.17,0.5);
+  neck.render();
+
+  //Head
+  var head = new Cube();
+  head.color=[0.2,0.2,0.2,1.0];
+  head.matrix = neckCoord;
+  head.matrix.translate(-0.10,0.15,-0.05);
+  head.matrix.rotate(g_headAngle,0,1,0);
+  var headCoordTop = new Matrix4(head.matrix);
+  var headCoordBottom = new Matrix4(head.matrix);
+  var headCoordEyeL = new Matrix4(head.matrix);
+  var headCoordEyeR = new Matrix4(head.matrix);
+  head.matrix.scale(0.8,0.75,0.6);
+  head.render();
+
+  //MouthTop
+  var mouthTop = new Cube();
+  mouthTop.color=[0.22,0.2,0.2,1.0];
+  mouthTop.matrix = headCoordTop;
+  mouthTop.matrix.translate(0.10,0.30,-0.4);
+  var mouthTopCoord = new Matrix4(mouthTop.matrix);
+  var mouthTopCoordTwo = new Matrix4(mouthTop.matrix);
+  var mouthTopCoordThree = new Matrix4(mouthTop.matrix);
+  var mouthTopCoordFour = new Matrix4(mouthTop.matrix);
+  mouthTop.matrix.scale(0.6,0.3,0.45);
+  mouthTop.render();
+
+  //ToothOne
+  var toothOne = new Cube();
+  toothOne.color=[1,1,1,1.0];
+  toothOne.matrix = mouthTopCoord;
+  toothOne.matrix.translate(0.05,-0.05,0.05);
+  toothOne.matrix.scale(0.1,0.1,0.1);
+  toothOne.render();
+
+  //ToothTwo
+  var toothTwo = new Cube();
+  toothTwo.color=[1,1,1,1.0];
+  toothTwo.matrix = mouthTopCoordTwo;
+  toothTwo.matrix.translate(0.05,-0.05,0.2);
+  toothTwo.matrix.scale(0.1,0.1,0.1);
+  toothTwo.render();
+
+  //ToothThree
+  var toothThree = new Cube();
+  toothThree.color=[1,1,1,1.0];
+  toothThree.matrix = mouthTopCoordThree;
+  toothThree.matrix.translate(0.45,-0.05,0.05);
+  toothThree.matrix.scale(0.1,0.1,0.1);
+  toothThree.render();
+
+  //ToothFour
+  var toothFour = new Cube();
+  toothFour.color=[1,1,1,1.0];
+  toothFour.matrix = mouthTopCoordFour;
+  toothFour.matrix.translate(0.45,-0.05,0.2);
+  toothFour.matrix.scale(0.1,0.1,0.1);
+  toothFour.render();
+
+
+
+  //MouthBottom
+  var mouthBottom = new Cube();
+  mouthBottom.color=[0.21,0.2,0.2,1.0];
+  headCoordBottom.translate(0,0.2,0.35);
+  mouthBottom.matrix = headCoordBottom;
+  mouthBottom.matrix.translate(0.09,0.1,-0.15);
+  mouthBottom.matrix.rotate(180,1,0,0);
+  mouthBottom.matrix.rotate(g_mouthAngle,1,0,0);
+  var mouthBottomCoord = new Matrix4(mouthBottom.matrix);
+  var mouthBottomCoordTwo = new Matrix4(mouthBottom.matrix);
+  var mouthBottomCoordThree = new Matrix4(mouthBottom.matrix);
+  var mouthBottomCoordFour = new Matrix4(mouthBottom.matrix);
+  var mouthBottomCoordFive = new Matrix4(mouthBottom.matrix);
+  mouthBottom.matrix.scale(0.6,0.28,0.65);
+  mouthBottom.render();
+
+  //ToothOne
+  var toothOneBot = new Cube();
+  toothOneBot.color=[1,1,1,1.0];
+  toothOneBot.matrix = mouthBottomCoord;
+  toothOneBot.matrix.translate(0.05,-0.05,0.3);
+  toothOneBot.matrix.scale(0.1,0.1,0.1);
+  toothOneBot.render();
+
+  //ToothTwo
+  var toothTwoBot = new Cube();
+  toothTwoBot.color=[1,1,1,1.0];
+  toothTwoBot.matrix = mouthBottomCoordTwo;
+  toothTwoBot.matrix.translate(0.05,-0.05,0.51);
+  toothTwoBot.matrix.scale(0.1,0.1,0.1);
+  toothTwoBot.render();
+
+  //ToothThree
+  var toothThreeBot = new Cube();
+  toothThreeBot.color=[1,1,1,1.0];
+  toothThreeBot.matrix = mouthBottomCoordThree;
+  toothThreeBot.matrix.translate(0.45,-0.05,0.3);
+  toothThreeBot.matrix.scale(0.1,0.1,0.1);
+  toothThreeBot.render();
+
+  //ToothFour
+  var toothFourBot = new Cube();
+  toothFourBot.color=[1,1,1,1.0];
+  toothFourBot.matrix = mouthBottomCoordFour;
+  toothFourBot.matrix.translate(0.45,-0.05,0.51);
+  toothFourBot.matrix.scale(0.1,0.1,0.1);
+  toothFourBot.render();
+
+  //ToothFive
+  var toothFiveBot = new Cube();
+  toothFiveBot.color=[1,1,1,1.0];
+  toothFiveBot.matrix = mouthBottomCoordFive;
+  toothFiveBot.matrix.translate(0.25,-0.05,0.49);
+  toothFiveBot.matrix.scale(0.1,0.1,0.1);
+  toothFiveBot.render();
+
+
+
+
+  //EyeRight
+  var eyeRight = new Cube();
+  eyeRight.color=[1,1,1,1.0];
+  eyeRight.matrix = headCoordEyeR;
+  eyeRight.matrix.translate(0.80,0.50,0);
+  eyeRight.matrix.scale(0.01,0.1,0.1);
+  eyeRight.render();
+
+  
+//EyeLeft
+  var eyeLeft = new Cube();
+  eyeLeft.color=[1,1,1,1.0];
+  eyeLeft.matrix = headCoordEyeL;
+  eyeLeft.matrix.translate(-0.01,0.50,0);
+  eyeLeft.matrix.scale(0.01,0.1,0.1);
+  eyeLeft.render();
+
+ 
 
   //back
   var back = new Cube();
   back.color=[0.2,0.2,0.2,1.0];
   back.matrix = bodyCoor;
   back.matrix.translate(0,0.65,0.25);
+  var backCoord = new Matrix4(back.matrix);
+  var backCoordTwo = new Matrix4(back.matrix);
+  var backCoordThree = new Matrix4(back.matrix);
+  var backCoordFour = new Matrix4(back.matrix);
+  var backCoordFive = new Matrix4(back.matrix);
   back.matrix.scale(1,1,0.1);
   back.render();
+
+  //BackSpikes
+  var spikeBack = new Pyramid();
+  spikeBack.color=[0.2,0.2,0.8,1.0];
+  spikeBack.matrix = backCoord;
+  spikeBack.matrix.translate(0.1,0.7,0);
+  spikeBack.matrix.scale(0.3,0.3,1.6);
+  spikeBack.matrix.rotate(90,1,0,0);
+  spikeBack.render();
+
+  var spikeBack2 = new Pyramid();
+  spikeBack2.color=[0.2,0.2,0.8,1.0];
+  spikeBack2.matrix = backCoordTwo;
+  spikeBack2.matrix.translate(0.7,0.7,0);
+  spikeBack2.matrix.scale(0.3,0.3,1.6);
+  spikeBack2.matrix.rotate(90,1,0,0);
+  spikeBack2.render();
+
+  var spikeBack3 = new Pyramid();
+  spikeBack3.color=[0.2,0.2,0.8,1.0];
+  spikeBack3.matrix = backCoordThree;
+  spikeBack3.matrix.translate(0.1,1.05,0);
+  spikeBack3.matrix.scale(0.3,0.3,1.6);
+  spikeBack3.matrix.rotate(90,1,0,0);
+  spikeBack3.render();
+
+
+  
+  var spikeBack4 = new Pyramid();
+  spikeBack4.color=[0.3,0.3,0.8,1.0];
+  spikeBack4.matrix = backCoordFour;
+  spikeBack4.matrix.translate(0.7,1.05,0);
+  spikeBack4.matrix.scale(0.3,0.3,1.6);
+  spikeBack4.matrix.rotate(90,1,0,0);
+  spikeBack4.render();
+
+  var spikeBack5 = new Pyramid();
+  spikeBack5.color=[0.3,0.3,0.9,1.0];
+  spikeBack5.matrix = backCoordFive;
+  spikeBack5.matrix.translate(0.4,0.9,0);
+  spikeBack5.matrix.scale(0.3,0.35,1.1);
+  spikeBack5.matrix.rotate(90,1,0,0);
+  spikeBack5.render();
+
+
+
 
   //TailStart
   var tailStart = new Cube();
   tailStart.color=[0.2,0.2,0.2,1.0];
   tailStart.matrix = bodyCoor;
   tailStart.matrix.translate(0.1,-0.5,0.35);
+  tailStart.matrix.rotate(g_tailAngle,0,1,0);
+  tailStart.matrix.rotate(g_tailAngle2,1,0,0);
+
   var tailCoord = new Matrix4(tailStart.matrix);
-  tailStart.matrix.scale(0.8,0.7,4);
+  tailStart.matrix.scale(0.8,0.9,4);
   tailStart.render();
 
+  
+
+
+
+
   var tailTwo = new Cube();
-  tailTwo.color=[0.6,0.2,0.2,1.0];
+  tailTwo.color=[0.2,0.2,0.2,1.0];
   tailTwo.matrix = tailCoord;
   tailTwo.matrix.translate(0.1,0.05,3.5);
   var tailtwoCoord = new Matrix4(tailTwo.matrix);
+  var tailtwoCoordSpike = new Matrix4(tailTwo.matrix);
+
   tailTwo.matrix.scale(0.6,0.6,5);
   tailTwo.render();
+
+  var spikeTailTwo = new Pyramid();
+  spikeTailTwo.color=[0.2,0.2,0.8,1.0];
+  spikeTailTwo.matrix = tailtwoCoordSpike;
+  spikeTailTwo.matrix.translate(0.05,0.55,1.2);
+  spikeTailTwo.matrix.scale(0.5,1,2.5);
+  spikeTailTwo.render();
+  
+
 
   var tailThree = new Cube();
   tailThree.color=[0.2,0.2,0.2,1.0];
@@ -309,13 +583,22 @@ function renderAllShapes(){
   tailThree.render();
 
   var tailFour = new Cube();
-  tailFour.color=[0.6,0.2,0.2,1.0];
+  tailFour.color=[0.2,0.2,0.2,1.0];
   tailFour.matrix = tailThreeCoord;
   tailFour.matrix.translate(0.05,0.12,3.5);
   var tailFourCoord = new Matrix4(tailFour.matrix);
+  var tailFourCoordSpike = new Matrix4(tailFour.matrix);
   tailFour.matrix.scale(0.4,0.4,8);
   tailFour.matrix.rotate(-50,1,0,0);
   tailFour.render();
+
+  var spikeTailFour = new Pyramid();
+  spikeTailFour.color=[0.2,0.2,0.8,1.0];
+  spikeTailFour.matrix = tailFourCoordSpike;
+  spikeTailFour.matrix.translate(-0.05,0.30,-3.2);
+  spikeTailFour.matrix.rotate(-1,1,0,0);
+  spikeTailFour.matrix.scale(0.5,1,2.5);
+  spikeTailFour.render();
 
   var tailFive = new Cube();
   tailFive.color=[0.2,0.2,0.2,1.0];
@@ -328,25 +611,50 @@ function renderAllShapes(){
   tailFive.render();
 
   var tailSix = new Cube();
-  tailSix.color=[0.6,0.2,0.2,1.0];
+  tailSix.color=[0.2,0.2,0.2,1.0];
   tailSix.matrix = tailFiveCoord;
   tailSix.matrix.translate(0.05,0.20,4.0);
   var tailSixCoord = new Matrix4(tailSix.matrix);
+  var tailSixCoordSpike = new Matrix4(tailSix.matrix);
   tailSix.matrix.scale(0.32,0.25,8.5);
   tailSix.matrix.rotate(-40,1,0,0);
   tailSix.matrix.translate(0,0.0,-0.55);
   tailSix.render();
+
+  var spikeTailSix = new Pyramid();
+  spikeTailSix.color=[0.2,0.2,0.8,1.0];
+  spikeTailSix.matrix = tailSixCoordSpike;
+  spikeTailSix.matrix.translate(0.05,0.15,-7.2);
+  spikeTailSix.matrix.rotate(-1,1,0,0);
+  spikeTailSix.matrix.scale(0.2,0.5,2.5);
+  spikeTailSix.render();
 
   var tailSeven = new Cube();
   tailSeven.color=[0.2,0.2,0.2,1.0];
   tailSeven.matrix = tailSixCoord;
   tailSeven.matrix.translate(0.05,0.10,4.0);
   var tailSevenCoord = new Matrix4(tailSeven.matrix);
+  var tailSevenCoordSpike = new Matrix4(tailSeven.matrix);
   tailSeven.matrix.scale(0.32,0.25,5.5);
   tailSeven.matrix.rotate(-10,1,0,0);
   tailSeven.matrix.translate(0,0.05,-1.0);
   tailSeven.render();
   
+  var spikeTailSeven = new Pyramid();
+  spikeTailSeven.color=[0.2,0.2,0.8,1.0];
+  spikeTailSeven.matrix = tailSevenCoord;
+  spikeTailSeven.matrix.translate(0.05,0.10,-7.2);
+  spikeTailSeven.matrix.rotate(-1,1,0,0);
+  spikeTailSeven.matrix.scale(0.2,0.5,2.5);
+  spikeTailSeven.render();
+
+  var spikeTailSeven = new Pyramid();
+  spikeTailSeven.color=[0.2,0.2,0.8,1.0];
+  spikeTailSeven.matrix = tailSevenCoordSpike;
+  spikeTailSeven.matrix.translate(0.05,0.10,-4.2);
+  spikeTailSeven.matrix.rotate(-1,1,0,0);
+  spikeTailSeven.matrix.scale(0.2,0.5,2.5);
+  spikeTailSeven.render();
 
 
 

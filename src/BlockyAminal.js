@@ -108,6 +108,9 @@ let g_leftArmAngle=0;
 let g_rightArmAngle=0;
 let g_spikeColor=0.3;
 let g_bodyAngle2=0;
+let g_animation=false;
+let g_startTime=null;
+
 
 
 //let g_segNum=10;
@@ -125,6 +128,9 @@ function addActionsForHtmlUI(){
     document.getElementById('leftArmSlide').addEventListener('mousemove', function() {g_leftArmAngle=this.value; renderAllShapes(); });
     document.getElementById('rightArmSlide').addEventListener('mousemove', function() {g_rightArmAngle=this.value; renderAllShapes(); });
     document.getElementById('spikeColorSlide').addEventListener('mousemove', function() {g_spikeColor = parseFloat(this.value); renderAllShapes(); });
+
+    document.getElementById('start').onclick = function() {g_animation=true; g_startTime=null; tick();};
+    document.getElementById('stop').onclick = function() {g_animation=false; g_startTime=null; renderAllShapes();};
 
 
 
@@ -156,7 +162,6 @@ var g_shapesList=[];
 
 
 let timerInterval;
-let startTime;
 let gameStarted=false;
 
 function click(ev) {
@@ -205,6 +210,20 @@ function convertCoordinatesEventToGl(ev){
     y = (canvas.height/2 - (y - rect.top))/(canvas.height/2);
     return([x,y]); 
 }
+//var g_startTime = performance.now()/1000.0;
+var g_seconds=performance.now()/1000.0 - g_startTime;
+
+function tick() {
+  if (g_startTime === null) {
+    g_startTime = performance.now() / 1000.0;
+  }
+  g_seconds = performance.now() / 1000.0 - g_startTime;
+  renderAllShapes();
+  if (g_animation) {
+    requestAnimationFrame(tick);
+  }
+}
+
 
 function renderAllShapes(){
   var startTime = performance.now();
@@ -226,12 +245,17 @@ function renderAllShapes(){
   var rightFoot = new Cube();
   rightFoot.color=[0.2,0.2,0.2,1.0];
   rightFoot.matrix.translate(0.20,-0.95,-0.50);
+  rightFoot.matrix.rotate(g_bodyAngle2,0,1,0);
+  var rightFootCoord = new Matrix4(rightFoot.matrix);
   rightFoot.matrix.scale(0.4,0.2,0.5);
   rightFoot.render();
   //Left Foot
   var leftFoot = new Cube();
   leftFoot.color=[0.2,0.2,0.2,1.0];
   leftFoot.matrix.translate(-0.60,-0.95,-0.5);
+  leftFoot.matrix.rotate(g_bodyAngle2,0,1,0);
+  var leftFootCoord = new Matrix4(leftFoot.matrix);
+
   leftFoot.matrix.scale(0.4,0.2,0.5);
   leftFoot.render();
 
@@ -239,8 +263,10 @@ function renderAllShapes(){
   //BottmRightLeg
   var bRightleg = new Cube();
   bRightleg.color=[0.19,0.19,0.19,1.0];
-  bRightleg.matrix.translate(0.20,-0.75,-0.35);
+  bRightleg.matrix = rightFootCoord;
+  bRightleg.matrix.translate(0.0,0.2,0.1);
   bRightleg.matrix.rotate(g_legAngle,1,0,0);
+  //bRightleg.matrix.rotate(g_bodyAngle2,0,1,0);
   var rightLegCoord = new Matrix4(bRightleg.matrix);
   bRightleg.matrix.scale(0.4,0.6,0.45);
   bRightleg.matrix.translate(0,-0.28,0);
@@ -249,8 +275,10 @@ function renderAllShapes(){
   //BottmLeftLeg
   var bLeftleg = new Cube();
   bLeftleg.color=[0.23,0.23,0.23,1.0];
-  bLeftleg.matrix.translate(-0.60,-0.75,-0.35);
+  bLeftleg.matrix = leftFootCoord;
+  bLeftleg.matrix.translate(0.0,0.2,0.1);
   bLeftleg.matrix.rotate(g_legAngle,1,0,0);
+
   var leftLegCoord = new Matrix4(bLeftleg.matrix);
   bLeftleg.matrix.scale(0.4,0.6,0.45);
   bLeftleg.matrix.translate(0,-0.28,0);
@@ -262,6 +290,8 @@ function renderAllShapes(){
   tRightleg.matrix = rightLegCoord;
   tRightleg.matrix.translate(0,0.60,-0.01);
   tRightleg.matrix.rotate(-g_legAngle*1.5,1,0,0);
+  //tRightleg.matrix.rotate(g_bodyAngle2,0,1,0);
+
   tRightleg.matrix.scale(0.45,0.7,0.551);
   tRightleg.matrix.translate(-0.05,-0.25,0);
   tRightleg.render();
@@ -272,6 +302,8 @@ function renderAllShapes(){
   tLeftleg.matrix = leftLegCoord;
   tLeftleg.matrix.translate(0,0.60,-0.01);
   tLeftleg.matrix.rotate(-g_legAngle*1.5,1,0,0);
+  //tLeftleg.matrix.rotate(g_bodyAngle2,0,1,0);
+
   var TLegCoord = new Matrix4(tLeftleg.matrix);
   tLeftleg.matrix.scale(0.45,0.7,0.551);
   tLeftleg.matrix.translate(-0.05,-0.25,0);
@@ -280,12 +312,20 @@ function renderAllShapes(){
   //Body
   var body = new Cube();
   body.color=[0.2,0.2,0.2,1.0];
-
-  TLegCoord.translate(0,0,0.20);
+  TLegCoord.translate(0.7,0,0.20);
   body.matrix=TLegCoord;
-  body.matrix.translate(0.05,0.2,0.1);
+  //body.matrix.translate(-0.65,0.2,0.1);
   body.matrix.rotate(g_bodyAngle,1,0,0);
-  body.matrix.rotate(g_bodyAngle2,0,1,0);
+  //body.matrix.rotate(g_bodyAngle2,0,1,0);
+  body.matrix.translate(-0.65,0.2,0.1);
+  if(g_animation==true){
+    if(g_seconds>31.5){
+      body.matrix.rotate(-Math.abs(45*Math.sin(g_seconds/5)),1,0,0);//39.5 sec
+
+    }
+    //armRight.matrix.rotate(45*Math.sin(g_seconds/1),0,1,0);
+
+  }
   var bodyCoor = new Matrix4(body.matrix);
   var bodyCoorChest = new Matrix4(body.matrix);
   var bodyCoorNeck = new Matrix4(body.matrix);
@@ -293,6 +333,7 @@ function renderAllShapes(){
   var bodyCoorArmLeft = new Matrix4(body.matrix);
   body.matrix.translate(0,0,-0.20);
   body.matrix.scale(1.1,1.7,0.5);
+  
   body.render();
 
   //ArmRight
@@ -300,7 +341,15 @@ function renderAllShapes(){
   armRight.color=[0.2,0.2,0.2,1.0];
   armRight.matrix = bodyCoorArmRight;
   armRight.matrix.translate(1,0.90,0.1);
-  armRight.matrix.rotate(-g_rightArmAngle,1,0,0);
+  if(g_animation==true){
+    //armRight.matrix.rotate(45*Math.sin(g_seconds/1),0,1,0);
+    armRight.matrix.rotate(45*Math.sin(g_seconds/1),1,0,0);
+
+  }
+  else{
+    armRight.matrix.rotate(-g_rightArmAngle,1,0,0);
+
+  }
   armRight.matrix.scale(0.4,0.4,-1.2);
   armRight.render();
 
@@ -309,7 +358,15 @@ function renderAllShapes(){
   armLeft.color=[0.2,0.2,0.2,1.0];
   armLeft.matrix = bodyCoorArmLeft;
   armLeft.matrix.translate(-0.4,0.90,0.1);
-  armLeft.matrix.rotate(-g_leftArmAngle,1,0,0);
+  if(g_animation==true){
+    //armLeft.matrix.rotate(-45*Math.sin(g_seconds/1),0,1,0);
+    armLeft.matrix.rotate(-45*Math.sin(g_seconds/1.2),1,0,0);
+
+  }
+  else{
+    armLeft.matrix.rotate(-g_rightArmAngle,1,0,0);
+
+  }
   armLeft.matrix.scale(0.4,0.4,-1.2);
   armLeft.render();
 
@@ -344,15 +401,44 @@ function renderAllShapes(){
   //Head
   var head = new Cube();
   head.color=[0.2,0.2,0.2,1.0];
+  neckCoord.translate(0.5,0,0.2);
   head.matrix = neckCoord;
-  head.matrix.translate(-0.10,0.15,-0.05);
-  head.matrix.rotate(g_headAngle,0,1,0);
+  //var testy =neckCoord;
+  //head.matrix.translate(-0.10,0.15,-0.05);
+  //head.matrix.rotate(g_headAngle,0,1,0);
+  head.matrix.rotate(-10,1,0,0);
+
+  if(g_animation==true){
+    if(g_seconds>0&&g_seconds<12.6){
+     head.matrix.rotate((35*Math.sin(g_seconds/1)),0,1,0);
+    }
+    else if(g_seconds>14&&g_seconds<17.5){
+      
+      head.matrix.rotate((-45*Math.sin(g_seconds/4))-10,1,0,0);
+
+    }
+    else if(g_seconds>17.5){
+
+    
+      
+      head.matrix.rotate(35,1,0,0);
+
+    }
+  else{
+    head.matrix.rotate(g_headAngle,1,0,0);
+
+    }
+  }
+  head.matrix.translate(-0.6,0.15,-0.15);
+
   var headCoordTop = new Matrix4(head.matrix);
   var headCoordBottom = new Matrix4(head.matrix);
   var headCoordEyeL = new Matrix4(head.matrix);
   var headCoordEyeR = new Matrix4(head.matrix);
   head.matrix.scale(0.8,0.75,0.6);
   head.render();
+
+  
 
   //MouthTop
   var mouthTop = new Cube();
@@ -407,6 +493,24 @@ function renderAllShapes(){
   mouthBottom.matrix = headCoordBottom;
   mouthBottom.matrix.translate(0.09,0.1,-0.15);
   mouthBottom.matrix.rotate(180,1,0,0);
+
+
+  if(g_animation==true){
+    if(g_seconds<6.1){
+      mouthBottom.matrix.rotate(-Math.abs(30*Math.sin(g_seconds/2)), 1, 0, 0);
+    }
+    else if(g_seconds>19&&g_seconds<22){
+      mouthBottom.matrix.rotate(-Math.abs(45*Math.sin(g_seconds/2)), 1, 0, 0);
+    }
+    else if(g_seconds>22){
+      mouthBottom.matrix.rotate(-45,1,0,0);
+    }
+    
+  }
+  else{
+    mouthBottom.matrix.rotate(g_headAngle,1,0,0);
+
+  }
   mouthBottom.matrix.rotate(g_mouthAngle,1,0,0);
   var mouthBottomCoord = new Matrix4(mouthBottom.matrix);
   var mouthBottomCoordTwo = new Matrix4(mouthBottom.matrix);
@@ -465,6 +569,13 @@ function renderAllShapes(){
   eyeRight.matrix = headCoordEyeR;
   eyeRight.matrix.translate(0.80,0.50,0);
   eyeRight.matrix.scale(0.01,0.1,0.1);
+  if (g_animation === true) {
+    if(g_seconds>24){
+      eyeRight.color=[0.3,0.3,1,1.0];
+
+
+    }
+  }
   eyeRight.render();
 
   
@@ -474,6 +585,12 @@ function renderAllShapes(){
   eyeLeft.matrix = headCoordEyeL;
   eyeLeft.matrix.translate(-0.01,0.50,0);
   eyeLeft.matrix.scale(0.01,0.1,0.1);
+  if (g_animation === true) {
+    if(g_seconds>24){
+      eyeLeft.color=[0.3,0.3,1,1.0];
+    }
+  }
+
   eyeLeft.render();
 
  
@@ -493,60 +610,138 @@ function renderAllShapes(){
 
   //BackSpikes
   var spikeBack = new Pyramid();
-  spikeBack.color=[0.2,0.2,0.8,1.0];
+  spikeBack.color=[0.3,0.3,0.3,1.0];
   spikeBack.matrix = backCoord;
   spikeBack.matrix.translate(0.1,0.7,0);
-  spikeBack.matrix.scale(0.3,0.3,1.6);
+  spikeBack.matrix.scale(0.3,0.3,1);
   spikeBack.matrix.rotate(90,1,0,0);
+  if (g_animation === true) {
+    if(g_seconds>18&&g_seconds<19){
+      var scaleY =  1+ Math.abs(Math.sin(g_seconds/2 * Math.PI));
+      spikeBack.matrix.scale(1, scaleY, 1);
+      spikeBack.matrix.translate(-scaleY/3,0,0);
+
+    }
+    else if(g_seconds>19){
+      spikeBack.color=[0.3,0.3,0.9,1.0];
+      spikeBack.matrix.translate(-0.333,0,0);
+      spikeBack.matrix.scale(1, 2, 1);
+    }
+  }
   spikeBack.render();
 
   var spikeBack2 = new Pyramid();
-  spikeBack2.color=[0.2,0.2,0.8,1.0];
+  spikeBack2.color=[0.3,0.3,0.3,1.0];
   spikeBack2.matrix = backCoordTwo;
   spikeBack2.matrix.translate(0.7,0.7,0);
-  spikeBack2.matrix.scale(0.3,0.3,1.6);
+  spikeBack2.matrix.scale(0.3,0.3,1);
   spikeBack2.matrix.rotate(90,1,0,0);
+  if (g_animation === true) {
+    if(g_seconds>18&&g_seconds<19){
+      var scaleY =  1+ Math.abs(Math.sin(g_seconds/2 * Math.PI));
+      spikeBack2.matrix.scale(1, scaleY, 1);
+      spikeBack2.matrix.translate(scaleY/3,0,0);
+
+    }
+    else if(g_seconds>19){
+      spikeBack2.color=[0.3,0.3,0.9,1.0];
+      spikeBack2.matrix.translate(0.333,0,0);
+      spikeBack2.matrix.scale(1, 2, 1);
+    }
+  }
   spikeBack2.render();
 
   var spikeBack3 = new Pyramid();
-  spikeBack3.color=[0.2,0.2,0.8,1.0];
+  spikeBack3.color=[0.3,0.3,0.3,1.0];
   spikeBack3.matrix = backCoordThree;
   spikeBack3.matrix.translate(0.1,1.05,0);
-  spikeBack3.matrix.scale(0.3,0.3,1.6);
+  spikeBack3.matrix.scale(0.3,0.3,1);
   spikeBack3.matrix.rotate(90,1,0,0);
+  if (g_animation === true) {
+    if(g_seconds>22&&g_seconds<23){
+      var scaleY =  1+ Math.abs(Math.sin(g_seconds/2 * Math.PI));
+      spikeBack3.matrix.scale(1, scaleY, 1);
+      spikeBack3.matrix.translate(-scaleY/3,0,0);
+      
+    }
+    else if(g_seconds>23){
+      spikeBack3.color=[0.3,0.3,0.9,1.0];
+      spikeBack3.matrix.translate(-0.333,0,0);
+      spikeBack3.matrix.scale(1, 2, 1);
+    }
+  }
   spikeBack3.render();
 
 
   
   var spikeBack4 = new Pyramid();
-  spikeBack4.color=[0.3,0.3,0.8,1.0];
+  spikeBack4.color=[0.3,0.3,0.3,1.0];
   spikeBack4.matrix = backCoordFour;
   spikeBack4.matrix.translate(0.7,1.05,0);
-  spikeBack4.matrix.scale(0.3,0.3,1.6);
+  spikeBack4.matrix.scale(0.3,0.3,1);
   spikeBack4.matrix.rotate(90,1,0,0);
+  if (g_animation === true) {
+    if(g_seconds>22&&g_seconds<23){
+      var scaleY =  1+ Math.abs(Math.sin(g_seconds/2 * Math.PI));
+      spikeBack4.matrix.scale(1, scaleY, 1);
+      spikeBack4.matrix.translate(scaleY/3,0,0);
+
+    }
+    else if(g_seconds>23){
+      spikeBack4.color=[0.3,0.3,0.9,1.0];
+      spikeBack4.matrix.translate(0.333,0,0);
+      spikeBack4.matrix.scale(1, 2, 1);
+    }
+  }
   spikeBack4.render();
 
   var spikeBack5 = new Pyramid();
-  spikeBack5.color=[0.3,0.3,0.9,1.0];
+  spikeBack5.color=[0.3,0.3,0.3,1.0];
   spikeBack5.matrix = backCoordFive;
   spikeBack5.matrix.translate(0.4,0.9,0);
   spikeBack5.matrix.scale(0.3,0.35,1.1);
   spikeBack5.matrix.rotate(90,1,0,0);
+  if (g_animation === true) {
+    if(g_seconds>20&&g_seconds<21){
+      var scaleY =  1+ Math.abs(Math.sin(g_seconds/2 * Math.PI));
+      spikeBack5.matrix.scale(1, scaleY, 1);
+    }
+    else if(g_seconds>21){
+      spikeBack5.color=[0.3,0.3,0.9,1.0];
+
+      spikeBack5.matrix.scale(1, 2, 1);
+    }
+  }
   spikeBack5.render();
 
 
 
 
   //TailStart
+  console.log("g_seconds: " + g_seconds);
   var tailStart = new Cube();
   tailStart.color=[0.2,0.2,0.2,1.0];
   tailStart.matrix = bodyCoor;
   tailStart.matrix.translate(0.1,-0.5,0.35);
-  tailStart.matrix.rotate(g_tailAngle,0,1,0);
-  tailStart.matrix.rotate(g_tailAngle2,1,0,0);
+  if(g_animation==true){
+    tailStart.matrix.rotate(3.5*Math.sin(g_seconds/1),0,1,0);
+    
+    //tailStart.matrix.rotate(3.5*Math.sin(g_seconds/2),0,1,0);
+
+    tailStart.matrix.rotate(2*Math.sin(g_seconds),1,0,0);
+    
+    
+    
+  }
+  else{
+      tailStart.matrix.rotate(g_tailAngle,0,1,0);
+      tailStart.matrix.rotate(g_tailAngle2,1,0,0);
+  }
+  
 
   var tailCoord = new Matrix4(tailStart.matrix);
   tailStart.matrix.scale(0.8,0.9,4);
+  
   tailStart.render();
 
   
@@ -565,10 +760,22 @@ function renderAllShapes(){
   tailTwo.render();
 
   var spikeTailTwo = new Pyramid();
-  spikeTailTwo.color=[0.2,0.2,0.8,1.0];
+  spikeTailTwo.color=[0.3,0.3,0.3,1.0];
   spikeTailTwo.matrix = tailtwoCoordSpike;
   spikeTailTwo.matrix.translate(0.05,0.55,1.2);
   spikeTailTwo.matrix.scale(0.5,1,2.5);
+  if (g_animation === true) {
+    if(g_seconds>16&&g_seconds<17){
+      var scaleY =  1+ Math.abs(Math.sin(g_seconds/2 * Math.PI));
+      spikeTailTwo.matrix.scale(1, scaleY, 1);
+    }
+    else if(g_seconds>17){
+      spikeTailTwo.color=[0.3,0.3,0.9,1.0];
+
+      spikeTailTwo.matrix.scale(1, 2, 1);
+    }
+    
+  } 
   spikeTailTwo.render();
   
 
@@ -593,11 +800,22 @@ function renderAllShapes(){
   tailFour.render();
 
   var spikeTailFour = new Pyramid();
-  spikeTailFour.color=[0.2,0.2,0.8,1.0];
+  spikeTailFour.color=[0.3,0.3,0.3,1.0];
   spikeTailFour.matrix = tailFourCoordSpike;
   spikeTailFour.matrix.translate(-0.05,0.30,-3.2);
   spikeTailFour.matrix.rotate(-1,1,0,0);
   spikeTailFour.matrix.scale(0.5,1,2.5);
+  if (g_animation === true) {
+    if(g_seconds>14&&g_seconds<15){
+      var scaleY =  1+ Math.abs(Math.sin(g_seconds/2 * Math.PI));
+      spikeTailFour.matrix.scale(1, scaleY, 1);
+    }
+    else if(g_seconds>15){
+      spikeTailFour.color=[0.3,0.3,0.9,1.0];
+      spikeTailFour.matrix.scale(1, 2, 1);
+    }
+    
+  } 
   spikeTailFour.render();
 
   var tailFive = new Cube();
@@ -622,11 +840,22 @@ function renderAllShapes(){
   tailSix.render();
 
   var spikeTailSix = new Pyramid();
-  spikeTailSix.color=[0.2,0.2,0.8,1.0];
+  spikeTailSix.color=[0.3,0.3,0.3,1.0];
   spikeTailSix.matrix = tailSixCoordSpike;
   spikeTailSix.matrix.translate(0.05,0.15,-7.2);
   spikeTailSix.matrix.rotate(-1,1,0,0);
   spikeTailSix.matrix.scale(0.2,0.5,2.5);
+  if (g_animation === true) {
+    if(g_seconds>12&&g_seconds<13){
+      var scaleY =  1+ Math.abs(Math.sin(g_seconds/2 * Math.PI));
+      spikeTailSix.matrix.scale(1, scaleY, 1);
+    }
+    else if(g_seconds>13){
+      spikeTailSix.color=[0.3,0.3,0.9,1.0];
+      spikeTailSix.matrix.scale(1, 2, 1);
+    }
+    
+  } 
   spikeTailSix.render();
 
   var tailSeven = new Cube();
@@ -640,22 +869,45 @@ function renderAllShapes(){
   tailSeven.matrix.translate(0,0.05,-1.0);
   tailSeven.render();
   
-  var spikeTailSeven = new Pyramid();
-  spikeTailSeven.color=[0.2,0.2,0.8,1.0];
-  spikeTailSeven.matrix = tailSevenCoord;
-  spikeTailSeven.matrix.translate(0.05,0.10,-7.2);
-  spikeTailSeven.matrix.rotate(-1,1,0,0);
-  spikeTailSeven.matrix.scale(0.2,0.5,2.5);
-  spikeTailSeven.render();
+  var spikeTail5 = new Pyramid();
+  spikeTail5.color=[0.3,0.3,0.3,1.0];
+  spikeTail5.matrix = tailSevenCoord;
+  spikeTail5.matrix.translate(0.05,0.10,-7.2);
+  spikeTail5.matrix.rotate(-1,1,0,0);
+  spikeTail5.matrix.scale(0.2,0.5,2.5);
+  if (g_animation === true) {
+    if(g_seconds>10&&g_seconds<11){
+      var scaleY =  1+ Math.abs(Math.sin(g_seconds/2 * Math.PI));
+      spikeTail5.matrix.scale(1, scaleY, 1);
+    }
+    else if(g_seconds>11){
+      spikeTail5.color=[0.3,0.3,0.9,1.0];
+
+      spikeTail5.matrix.scale(1, 2, 1);
+    }
+    
+  } 
+  spikeTail5.render();
 
   var spikeTailSeven = new Pyramid();
-  spikeTailSeven.color=[0.2,0.2,0.8,1.0];
+  spikeTailSeven.color=[0.3,0.3,0.3,1.0];
   spikeTailSeven.matrix = tailSevenCoordSpike;
   spikeTailSeven.matrix.translate(0.05,0.10,-4.2);
   spikeTailSeven.matrix.rotate(-1,1,0,0);
   spikeTailSeven.matrix.scale(0.2,0.5,2.5);
-  spikeTailSeven.render();
+  if (g_animation === true) {
+    if(g_seconds>8&&g_seconds<9){
+      var scaleY =  1+ Math.abs(Math.sin(g_seconds/2 * Math.PI));
+      spikeTailSeven.matrix.scale(1, scaleY, 1);
+    }
+    else if(g_seconds>9){
+      spikeTailSeven.color=[0.3,0.3,0.9,1.0];
 
+      spikeTailSeven.matrix.scale(1, 2, 1);
+    }
+    
+  } 
+  spikeTailSeven.render();
 
 
 

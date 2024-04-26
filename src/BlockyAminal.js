@@ -97,7 +97,7 @@ const CIRCLE=2;
 let g_selectedColor=[1.0,1.0,1.0,1.0];
 let g_selectedSize=10;
 let g_selectedType=POINT;
-let g_globalAngle=30;
+let g_globalAngle=60;
 let g_legAngle=0;
 let g_bodyAngle=0;
 let g_tailAngle=0;
@@ -110,6 +110,7 @@ let g_spikeColor=0.3;
 let g_bodyAngle2=0;
 let g_animation=false;
 let g_startTime=null;
+let g_quick=false;
 
 
 
@@ -129,8 +130,10 @@ function addActionsForHtmlUI(){
     document.getElementById('rightArmSlide').addEventListener('mousemove', function() {g_rightArmAngle=this.value; renderAllShapes(); });
     document.getElementById('spikeColorSlide').addEventListener('mousemove', function() {g_spikeColor = parseFloat(this.value); renderAllShapes(); });
 
-    document.getElementById('start').onclick = function() {g_animation=true; g_startTime=null; tick();};
+    document.getElementById('start').onclick = function() {g_animation=true; g_startTime=null; g_quick=false; tick();};
     document.getElementById('stop').onclick = function() {g_animation=false; g_startTime=null; renderAllShapes();};
+    document.getElementById('quick').onclick = function() {g_animation=true; g_startTime=null; g_quick=true; tick();};
+
 
 
 
@@ -216,6 +219,9 @@ var g_seconds=performance.now()/1000.0 - g_startTime;
 function tick() {
   if (g_startTime === null) {
     g_startTime = performance.now() / 1000.0;
+    if (g_quick) {
+      g_startTime -= 30; 
+    }
   }
   g_seconds = performance.now() / 1000.0 - g_startTime;
   renderAllShapes();
@@ -229,13 +235,21 @@ function renderAllShapes(){
   var startTime = performance.now();
 
   var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0);
+
+  if(g_animation==true){
+    if(g_seconds>37){
+      var rotationAngle = (g_seconds - 37) * 20; 
+    globalRotMat.rotate(rotationAngle, 0, 1, 0);
+    }
+  }
+  
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
 
-  var zoomFactor = 2.5; // Adjust this value to control the zoom level
+  var zoomFactor = 2.5; 
   var projectionMatrix = new Matrix4();
   projectionMatrix.setIdentity();
   projectionMatrix.scale(1 / zoomFactor, 1 / zoomFactor, 1/zoomFactor);
-  projectionMatrix.translate(0, -1, 0); // Translate the scene to keep the floor at y = -1
+  projectionMatrix.translate(0, -1, 0); 
 
   gl.uniformMatrix4fv(u_ProjectionMatrix, false, projectionMatrix.elements);
 
@@ -500,11 +514,8 @@ function renderAllShapes(){
 
 
   if(g_animation==true){
-    if(g_seconds>0&&g_seconds<20.6){
-      mouthBottom.matrix.rotate(-45, 1, 0, 0);
-
-    }
-    else if(g_seconds<6.1){
+    
+    if(g_seconds<6.1){
       mouthBottom.matrix.rotate(-Math.abs(30*Math.sin(g_seconds/2)), 1, 0, 0);
     }
     else if(g_seconds>19&&g_seconds<22){
@@ -916,296 +927,13 @@ function renderAllShapes(){
     
   } 
   spikeTailSeven.render();
-
-  var breath1 = new Cube();
-  breath1.color=[0,0.5,1,1.0];
-  breath1.matrix = BreathCoord1;
-  breath1.matrix.translate(0.35,0.35,0.0);
-  var breath2Coord = new Matrix4(breath1.matrix);
-  var breath3Coord = new Matrix4(breath1.matrix);
-  var breath4Coord = new Matrix4(breath1.matrix);
-  var breath5Coord = new Matrix4(breath1.matrix);
-  var breath6Coord = new Matrix4(breath1.matrix);
-  var breath7Coord = new Matrix4(breath1.matrix);
-  var breath8Coord = new Matrix4(breath1.matrix);
-  var breath9Coord = new Matrix4(breath1.matrix);
-  var breath10Coord = new Matrix4(breath1.matrix);
-  var breath11Coord = new Matrix4(breath1.matrix);
-  var breath12Coord = new Matrix4(breath1.matrix);
-  var breath13Coord = new Matrix4(breath1.matrix);
-  var breath14Coord = new Matrix4(breath1.matrix);
-  var breath15Coord = new Matrix4(breath1.matrix);
-  var breath16Coord = new Matrix4(breath1.matrix);
-  var breath17Coord = new Matrix4(breath1.matrix);
-  var breath18Coord = new Matrix4(breath1.matrix);
-  var breath19Coord = new Matrix4(breath1.matrix);
-  var breath20Coord = new Matrix4(breath1.matrix);
-
-  breath1.matrix.scale(0.1,0.1,0.1);
-  if (g_animation === true) {
-    var progress = (g_seconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    
-    if (progress < 1) {
-      breath1.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath1.matrix.translate(0.0, -translation/1.5, -translation);
-    }
+  if(g_seconds>34){
+    breathTime(BreathCoord1);
   }
-  breath1.render();
-
-var breath2 = new Cube();
-breath2.color = [0, 0.5, 1, 1.0];
-breath2.matrix = breath2Coord;
-breath2.matrix.translate(0.2, 0.0, 0.0);
-breath2.matrix.scale(0.1, 0.1, 0.1);
-
-if (g_animation === true) {
-  var delay = 0.05; // Delay in seconds
-  var adjustedSeconds = g_seconds - delay;
-  
-  if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    
-    if (progress < 1) {
-      breath2.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath2.matrix.translate(0.0, -translation/1.5, -translation);
-    }
-  }
-}
-breath2.render();
-
-var breath3 = new Cube();
-breath3.color = [0, 0.5, 1, 1.0];
-breath3.matrix = breath3Coord;
-breath3.matrix.translate(0.1, 0.0, 0.0);
-breath3.matrix.scale(0.1, 0.1, 0.1);
-
-if (g_animation === true) {
-  var delay = 0.03; // Delay in seconds
-  var adjustedSeconds = g_seconds - delay;
-  
-  if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    
-    if (progress < 1) {
-      breath3.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath3.matrix.translate(0.0, -translation/1.5, -translation);
-    }
-  }
-}
-
-var breath4 = new Cube();
-breath4.color = [0, 0.5, 1, 1.0];
-breath4.matrix = breath4Coord;
-breath4.matrix.translate(-0.1, 0.0, 0.0);
-breath4.matrix.scale(0.1, 0.1, 0.1);
-
-if (g_animation === true) {
-  var delay = 0.04; // Delay in seconds
-  var adjustedSeconds = g_seconds - delay;
-  
-  if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    
-    if (progress < 1) {
-      breath4.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath4.matrix.translate(0.0, -translation/1.5, -translation);
-    }
-  }
-}
-breath4.render();
-
-var breath5 = new Cube();
-breath5.color = [0, 0.5, 1, 1.0];
-breath5.matrix = breath5Coord;
-breath5.matrix.translate(-0.2, 0.0, 0.0);
-breath5.matrix.scale(0.1, 0.1, 0.1);
-if (g_animation === true) {
-  var delay = 0.06; // Delay in seconds
-  var adjustedSeconds = g_seconds - delay;
-  if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    if (progress < 1) {
-      breath5.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath5.matrix.translate(0.0, -translation/1.5, -translation);
-    }
-  }
-}
-breath5.render();
-
-var breath6 = new Cube();
-breath6.color = [0, 0.5, 1, 1.0];
-breath6.matrix = breath6Coord;
-breath6.matrix.translate(0.25, 0.0, 0.0);
-breath6.matrix.scale(0.1, 0.1, 0.1);
-if (g_animation === true) {
-  var delay = 0.07; // Delay in seconds
-  var adjustedSeconds = g_seconds - delay;
-  if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    if (progress < 1) {
-      breath6.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath6.matrix.translate(0.0, -translation/1.5, -translation);
-    }
-  }
-}
-breath6.render();
-
-var breath7 = new Cube();
-breath7.color = [0, 0.5, 1, 1.0];
-breath7.matrix = breath7Coord;
-breath7.matrix.translate(-0.15, 0.02, 0.0);
-breath7.matrix.scale(0.1, 0.1, 0.1);
-if (g_animation === true) {
-  var delay = 0.08; // Delay in seconds
-  var adjustedSeconds = g_seconds - delay;
-  if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    if (progress < 1) {
-      breath7.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath7.matrix.translate(0.0, -translation/1.5, -translation);
-    }
-  }
-}
-breath7.render();
-
-var breath8 = new Cube();
-breath8.color = [0, 0.5, 1, 1.0];
-breath8.matrix = breath8Coord;
-breath8.matrix.translate(0.2, -0.15, 0.0);
-breath8.matrix.scale(0.1, 0.1, 0.1);
-if (g_animation === true) {
-  var delay = 0.09; // Delay in seconds
-  var adjustedSeconds = g_seconds - delay;
-  if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    if (progress < 1) {
-      breath8.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath8.matrix.translate(0.0, -translation/1.5, -translation);
-    }
-  }
-}
-breath8.render();
-
-var breath9 = new Cube();
-breath9.color = [0, 0.5, 1, 1.0];
-breath9.matrix = breath9Coord;
-breath9.matrix.translate(-0.05, 0.02, 0.0);
-breath9.matrix.scale(0.1, 0.1, 0.1);
-if (g_animation === true) {
-  var delay = 0.1; // Delay in seconds
-  var adjustedSeconds = g_seconds - delay;
-  if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    if (progress < 1) {
-      breath9.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath9.matrix.translate(0.0, -translation/1.5, -translation);
-    }
-  }
-}
-breath9.render();
-
-var breath10 = new Cube();
-breath10.color = [0, 0.5, 1, 1.0];
-breath10.matrix = breath10Coord;
-breath10.matrix.translate(0.15, 0.02, 0.0);
-breath10.matrix.scale(0.1, 0.1, 0.1);
-if (g_animation === true) {
-  var delay = 0.11; // Delay in seconds
-  var adjustedSeconds = g_seconds - delay;
-  if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    if (progress < 1) {
-      breath10.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath10.matrix.translate(0.0, -translation/1.5, -translation);
-    }
-  }
-}
-breath10.render();
-
-var breath11 = new Cube();
-breath11.color = [0, 0.5, 1, 1.0];
-breath11.matrix = breath11Coord;
-breath11.matrix.translate(-0.2, -0.05, 0.0);
-breath11.matrix.scale(0.1, 0.1, 0.1);
-if (g_animation === true) {
-  var delay = 0.12; // Delay in seconds
-  var adjustedSeconds = g_seconds - delay;
-  if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    if (progress < 1) {
-      breath11.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath11.matrix.translate(0.0, -translation/1.5, -translation);
-    }
-  }
-}
-breath11.render();
-
-var breath12 = new Cube();
-breath12.color = [0, 0.5, 1, 1.0];
-breath12.matrix = breath12Coord;
-breath12.matrix.translate(0.25, 0.02, 0.0);
-breath12.matrix.scale(0.1, 0.1, 0.1);
-if (g_animation === true) {
-  var delay = 0.13; // Delay in seconds
-  var adjustedSeconds = g_seconds - delay;
-  if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    if (progress < 1) {
-      breath12.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath12.matrix.translate(0.0, -translation/1.5, -translation);
-    }
-  }
-}
-breath12.render();
-
-var breath20 = new Cube();
-breath20.color = [0, 0.5, 1, 1.0];
-breath20.matrix = breath20Coord;
-breath20.matrix.translate(-0.25, 0.0, 0.0);
-breath20.matrix.scale(0.1, 0.1, 0.1);
-if (g_animation === true) {
-  var delay = 0.21; // Delay in seconds
-  var adjustedSeconds = g_seconds - delay;
-  if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    if (progress < 1) {
-      breath20.matrix.translate(0.0, translation/1.5, translation);
-    } else {
-      breath20.matrix.translate(0.0, -translation/1.5, -translation);
-    }
-  }
-}
-breath20.render();
 
 
   
-
-
+  
 
 
 

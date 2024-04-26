@@ -1,22 +1,74 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>CSE 160 Assignment 2</title>
-</head>
-<body onload="main()">
-  <h1>CSE 160 Lab 1</h1>
-  
-  <p>
-    <strong>Name:</strong>Thomas Pollicino:<br>
-    <strong>Email:</strong> tpollici@ucsc.edu
-  </p>
-  
-  <label for="Assignment2">Assignment 2:</label>
-  <a href="src/asg1.html">Link to Project</a>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Change a point color</title>
+  </head>
 
-  <h2>Notes</h2>
-  <p>
-    Check it out!
-  </p>
-</body>
+  <body onload="main()">
+    <canvas id="webgl" width="600" height="600">
+    Please use a browser that supports "canvas"
+    </canvas>
+    <p>
+        <p id="numdot">XXX</p>
+    
+      Camera Angle <input type="range" min="30" max="360" value="5" class="slider" id="angleSlide">
+    </p>
+    <p>
+      _______________________________________________________________________________________    Animation:
+      <button type = "button" id="start">Start</button>
+      <button type = "button" id="stop">Stop</button>
+      <button type = "button" id="quick">Quick Mode</button>
+    </p>
+    <p>
+      Leg Slider <input type="range" min="-30" max="0" value="-20" class="slider" id="legSlide">
+    </p>
+    <p>
+      Body Slider <input type="range" min="-45" max="0" value="-20" class="slider" id="bodySlide">
+    </p>
+    <p>
+      Body Slider 2 <input type="range" min="-45" max="45" value="-20" class="slider" id="bodySlide2">
+    </p>
+    <p>
+      Tail Slider <input type="range" min="-3" max="3" value="0" class="slider" id="tailSlide">
+    </p>
+    <p>
+      Tail Slider 2<input type="range" min="-3" max="3" value="0" class="slider" id="tailSlide2">
+    </p>
+    <p>
+      Mouth<input type="range" min="-40" max="0" value="0" class="slider" id="mouthSlide">
+    </p>
+    <p>
+      Head<input type="range" min="-45" max="45" value="0" class="slider" id="headSlide">
+    </p>
+    <p>
+      Right Arm<input type="range" min="-45" max="45" value="0" class="slider" id="rightArmSlide">
+    </p>
+    <p>
+      Left Arm<input type="range" min="-45" max="45" value="0" class="slider" id="leftArmSlide">
+    </p>
+    <p>
+      Spike Color<input type="range" min="0.3" max="0.8" value="0.3" class="slider" id="spikeColorSlide">
+    </p>
+    
+    
+
+
+
+  
+
+    <script src="./lib/webgl-utils.js"></script>
+    <script src="./lib/webgl-debug.js"></script>
+    <script src="./lib/cuon-utils.js"></script>
+    <script src="./lib/cuon-matrix.js"></script>
+    <script src="./src/BlockyAminal.js"></script>
+    <script src="./src/Points.js"></script>
+    <script src="./src/Triangle.js"></script>
+    <script src="./src/Circle.js"></script>
+    <script src="./src/Drawing.js"></script>
+    <script src="./src/Game.js"></script>
+    <script src="./src/Cube.js"></script>
+    <script src="./src/Pyramid.js"></script>
+    <script src="./src/breath.js"></script>
+  </body>
 </html>

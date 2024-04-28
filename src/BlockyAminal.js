@@ -111,6 +111,7 @@ let g_bodyAngle2=0;
 let g_animation=false;
 let g_startTime=null;
 let g_quick=false;
+let poke=false;
 
 
 
@@ -118,17 +119,14 @@ let g_quick=false;
 
 function addActionsForHtmlUI(){
     
-    document.getElementById('angleSlide').addEventListener('mousemove', function() {g_globalAngle=this.value; renderAllShapes(); });
-    document.getElementById('legSlide').addEventListener('mousemove', function() {g_legAngle=this.value; renderAllShapes(); });
-    document.getElementById('bodySlide').addEventListener('mousemove', function() {g_bodyAngle=this.value; renderAllShapes(); });
-    document.getElementById('tailSlide').addEventListener('mousemove', function() {g_tailAngle=this.value; renderAllShapes(); });
-    document.getElementById('tailSlide2').addEventListener('mousemove', function() {g_tailAngle2=this.value; renderAllShapes(); });
-    document.getElementById('mouthSlide').addEventListener('mousemove', function() {g_mouthAngle=this.value; renderAllShapes(); });
-    document.getElementById('headSlide').addEventListener('mousemove', function() {g_headAngle=this.value; renderAllShapes(); });
-    document.getElementById('leftArmSlide').addEventListener('mousemove', function() {g_leftArmAngle=this.value; renderAllShapes(); });
-    document.getElementById('rightArmSlide').addEventListener('mousemove', function() {g_rightArmAngle=this.value; renderAllShapes(); });
-    document.getElementById('spikeColorSlide').addEventListener('mousemove', function() {g_spikeColor = parseFloat(this.value); renderAllShapes(); });
-
+    document.getElementById('angleSlide').addEventListener('input', function() {g_globalAngle=this.value; renderAllShapes(); });
+    document.getElementById('legSlide').addEventListener('input', function() {g_legAngle=this.value; renderAllShapes(); });
+    document.getElementById('bodySlide').addEventListener('input', function() {g_bodyAngle=this.value; renderAllShapes(); });
+    document.getElementById('tailSlide').addEventListener('input', function() {g_tailAngle=this.value; renderAllShapes(); });
+    document.getElementById('tailSlide2').addEventListener('input', function() {g_tailAngle2=this.value; renderAllShapes(); });
+    document.getElementById('mouthSlide').addEventListener('input', function() {g_mouthAngle=this.value; renderAllShapes(); });
+    document.getElementById('rightArmSlide').addEventListener('input', function() {g_rightArmAngle=this.value; renderAllShapes(); });
+    document.getElementById('spikeColorSlide').addEventListener('input', function() {g_spikeColor = parseFloat(this.value); renderAllShapes(); });
     document.getElementById('start').onclick = function() {g_animation=true; g_startTime=null; g_quick=false; tick();};
     document.getElementById('stop').onclick = function() {g_animation=false; g_startTime=null; renderAllShapes();};
     document.getElementById('quick').onclick = function() {g_animation=true; g_startTime=null; g_quick=true; tick();};
@@ -167,45 +165,16 @@ let timerInterval;
 let gameStarted=false;
 
 function click(ev) {
-  let [x,y] = convertCoordinatesEventToGl(ev);
-
-
-  //Create and store the new point
-  //let point = new Point(); 
-  let point;
-  if(g_selectedType==POINT){
-    point=new Point();
-  } else if(g_selectedType==TRIANGLE){
-    point=new Triangle();
-  } else {
-    point = new Circle(g_segNum);
-  }
-  point.position=[x,y];
-  point.color=g_selectedColor.slice();
-  point.size=g_selectedSize;
-  g_shapesList.push(point);
-
-
-  if (gameStarted) {
-    gameClick(ev, x, y);
-  }
-  
-  // Store the coordinates to g_colors array
-//   if (x >= 0.0 && y >= 0.0) {      // First quadrant
-//     g_colors.push([1.0, 0.0, 0.0, 1.0]);  // Red
-//   } else if (x < 0.0 && y < 0.0) { // Third quadrant
-//     g_colors.push([0.0, 1.0, 0.0, 1.0]);  // Green
-//   } else {                         // Others
-//     g_colors.push([1.0, 1.0, 1.0, 1.0]);  // White
-//   }
-
-  //Draw every shape that is supposed to be in the canvas
-  renderAllShapes();
+  poke=true;
+  g_animation=true;
+  g_startTime=null;
+  g_quick=false;
+  tick();
 }
 
 function convertCoordinatesEventToGl(ev){
-    var x = ev.clientX; // x coordinate of a mouse pointer
-    var y = ev.clientY; // y coordinate of a mouse pointer
+    var x = ev.clientX; 
+    var y = ev.clientY; 
     var rect = ev.target.getBoundingClientRect();
 
     x = ((x - rect.left) - canvas.width/2)/(canvas.width/2);
@@ -216,6 +185,8 @@ function convertCoordinatesEventToGl(ev){
 var g_seconds=performance.now()/1000.0 - g_startTime;
 
 function tick() {
+
+  
   if (g_startTime === null) {
     g_startTime = performance.now() / 1000.0;
     if (g_quick) {
@@ -235,6 +206,11 @@ function renderAllShapes(){
 
   var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0);
 
+  if(g_animation==true){
+    var rotationAngle = (g_seconds) * 100; 
+    globalRotMat.rotate(rotationAngle, 0, 1, 0);
+    
+  }
   if(g_animation==true){
     if(g_seconds>37){
       var rotationAngle = (g_seconds - 37) * 20; 
@@ -279,6 +255,11 @@ function renderAllShapes(){
   bRightleg.matrix = rightFootCoord;
   bRightleg.matrix.translate(0.0,0.2,0.1);
   bRightleg.matrix.rotate(g_legAngle,1,0,0);
+  if(g_animation==true&&poke==true){
+    bRightleg.matrix.rotate(-Math.abs(30*Math.sin(g_seconds)),1,0,0);
+    //armRight.matrix.rotate(45*Math.sin(g_seconds/1),0,1,0);
+
+  }
   //bRightleg.matrix.rotate(g_bodyAngle2,0,1,0);
   var rightLegCoord = new Matrix4(bRightleg.matrix);
   bRightleg.matrix.scale(0.4,0.6,0.45);
@@ -291,7 +272,11 @@ function renderAllShapes(){
   bLeftleg.matrix = leftFootCoord;
   bLeftleg.matrix.translate(0.0,0.2,0.1);
   bLeftleg.matrix.rotate(g_legAngle,1,0,0);
+  if(g_animation==true&&poke==true){
+    bLeftleg.matrix.rotate(-Math.abs(30*Math.sin(g_seconds)),1,0,0);
+    //armRight.matrix.rotate(45*Math.sin(g_seconds/1),0,1,0);
 
+  }
   var leftLegCoord = new Matrix4(bLeftleg.matrix);
   bLeftleg.matrix.scale(0.4,0.6,0.45);
   bLeftleg.matrix.translate(0,-0.28,0);
@@ -303,6 +288,11 @@ function renderAllShapes(){
   tRightleg.matrix = rightLegCoord;
   tRightleg.matrix.translate(0,0.60,-0.01);
   tRightleg.matrix.rotate(-g_legAngle*1.5,1,0,0);
+  if(g_animation==true&&poke==true){
+    tRightleg.matrix.rotate(Math.abs(60*Math.sin(g_seconds)),1,0,0);
+    //armRight.matrix.rotate(45*Math.sin(g_seconds/1),0,1,0);
+
+  }
   //tRightleg.matrix.rotate(g_bodyAngle2,0,1,0);
 
   tRightleg.matrix.scale(0.45,0.7,0.551);
@@ -315,6 +305,11 @@ function renderAllShapes(){
   tLeftleg.matrix = leftLegCoord;
   tLeftleg.matrix.translate(0,0.60,-0.01);
   tLeftleg.matrix.rotate(-g_legAngle*1.5,1,0,0);
+  if(g_animation==true&&poke==true){
+    tLeftleg.matrix.rotate(Math.abs(60*Math.sin(g_seconds)),1,0,0);
+    //armRight.matrix.rotate(45*Math.sin(g_seconds/1),0,1,0);
+
+  }
   //tLeftleg.matrix.rotate(g_bodyAngle2,0,1,0);
 
   var TLegCoord = new Matrix4(tLeftleg.matrix);
@@ -356,7 +351,10 @@ function renderAllShapes(){
   armRight.color=[0.2,0.2,0.2,1.0];
   armRight.matrix = bodyCoorArmRight;
   armRight.matrix.translate(1,0.90,0.1);
-  if(g_animation==true){
+  if(g_animation==true&&poke==true){
+    armRight.matrix.rotate(45*Math.sin(g_seconds/0.1),1,0,0);
+  }
+  else if(g_animation==true){
     //armRight.matrix.rotate(45*Math.sin(g_seconds/1),0,1,0);
     armRight.matrix.rotate(45*Math.sin(g_seconds/1),1,0,0);
 
@@ -373,7 +371,10 @@ function renderAllShapes(){
   armLeft.color=[0.2,0.2,0.2,1.0];
   armLeft.matrix = bodyCoorArmLeft;
   armLeft.matrix.translate(-0.4,0.90,0.1);
-  if(g_animation==true){
+  if(g_animation==true&&poke==true){
+    armLeft.matrix.rotate(45*Math.sin(g_seconds/0.1),1,0,0);
+  }
+  else if(g_animation==true){
     //armLeft.matrix.rotate(-45*Math.sin(g_seconds/1),0,1,0);
     armLeft.matrix.rotate(-45*Math.sin(g_seconds/1.2),1,0,0);
 
@@ -513,8 +514,11 @@ function renderAllShapes(){
   mouthBottom.matrix.translate(0.09,0.1,-0.15);
   mouthBottom.matrix.rotate(180,1,0,0);
 
+  if(g_animation==true&&poke==true){
+    mouthBottom.matrix.rotate(-Math.abs(30*Math.sin(g_seconds/0.1)), 1, 0, 0);
 
-  if(g_animation==true){
+  }
+  else if(g_animation==true){
     
     if(g_seconds<6.1){
       mouthBottom.matrix.rotate(-Math.abs(30*Math.sin(g_seconds/2)), 1, 0, 0);

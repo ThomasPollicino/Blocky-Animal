@@ -108,9 +108,8 @@ function breathTime(BreathCoord1){
 
   breath1.matrix.scale(0.1,0.1,0.1);
   if (g_animation === true) {
-    var progress = (g_seconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
-    
+    var progress = (g_seconds % 1) / 0.06; 
+    var translation = progress * 4;
     if (progress < 1) {
       breath1.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -119,19 +118,19 @@ function breathTime(BreathCoord1){
   }
   breath1.render();
 
-var breath2 = new Cube();
+var breath2 = new Cube();//I used ai to duplicate these
 breath2.color = [0, 0.5, 1, 1.0];
 breath2.matrix = breath2Coord;
 breath2.matrix.translate(0.2, 0.0, 0.0);
 breath2.matrix.scale(0.1, 0.1, 0.1);
 
 if (g_animation === true) {
-  var delay = 0.05; // Delay in seconds
+  var delay = 0.05; 
   var adjustedSeconds = g_seconds - delay;
   
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     
     if (progress < 1) {
       breath2.matrix.translate(0.0, translation/1.5, translation);
@@ -149,12 +148,12 @@ breath3.matrix.translate(0.1, 0.0, 0.0);
 breath3.matrix.scale(0.1, 0.1, 0.1);
 
 if (g_animation === true) {
-  var delay = 0.03; // Delay in seconds
+  var delay = 0.03;     
   var adjustedSeconds = g_seconds - delay;
   
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     
     if (progress < 1) {
       breath3.matrix.translate(0.0, translation/1.5, translation);
@@ -171,12 +170,12 @@ breath4.matrix.translate(-0.1, 0.0, 0.0);
 breath4.matrix.scale(0.1, 0.1, 0.1);
 
 if (g_animation === true) {
-  var delay = 0.04; // Delay in seconds
+  var delay = 0.04;     
   var adjustedSeconds = g_seconds - delay;
   
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     
     if (progress < 1) {
       breath4.matrix.translate(0.0, translation/1.5, translation);
@@ -193,11 +192,11 @@ breath5.matrix = breath5Coord;
 breath5.matrix.translate(-0.2, 0.0, 0.0);
 breath5.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.06; // Delay in seconds
+  var delay = 0.06;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath5.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -213,11 +212,11 @@ breath6.matrix = breath6Coord;
 breath6.matrix.translate(0.25, 0.0, 0.0);
 breath6.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.07; // Delay in seconds
+  var delay = 0.07;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath6.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -233,11 +232,11 @@ breath7.matrix = breath7Coord;
 breath7.matrix.translate(-0.15, 0.02, 0.0);
 breath7.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.08; // Delay in seconds
+  var delay = 0.08;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath7.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -253,11 +252,11 @@ breath8.matrix = breath8Coord;
 breath8.matrix.translate(0.2, -0.15, 0.0);
 breath8.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.09; // Delay in seconds
+  var delay = 0.09;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath8.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -273,11 +272,11 @@ breath9.matrix = breath9Coord;
 breath9.matrix.translate(-0.05, -0.02, 0.0);
 breath9.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.1; // Delay in seconds
+  var delay = 0.1;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath9.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -293,11 +292,11 @@ breath10.matrix = breath10Coord;
 breath10.matrix.translate(0.15, 0.02, 0.0);
 breath10.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.11; // Delay in seconds
+  var delay = 0.11;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath10.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -313,11 +312,11 @@ breath11.matrix = breath11Coord;
 breath11.matrix.translate(-0.2, -0.05, 0.0);
 breath11.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.12; // Delay in seconds
+  var delay = 0.12;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath11.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -333,11 +332,11 @@ breath12.matrix = breath12Coord;
 breath12.matrix.translate(0.25, 0.02, 0.0);
 breath12.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.13; // Delay in seconds
+  var delay = 0.13;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath12.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -353,11 +352,11 @@ breath13.matrix = breath13Coord;
 breath13.matrix.translate(-0.15, 0.02, 0.0);
 breath13.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.14; // Delay in seconds
+  var delay = 0.14;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath13.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -373,11 +372,11 @@ breath14.matrix = breath14Coord;
 breath14.matrix.translate(-0.1, -0.12, 0.0);
 breath14.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.15; // Delay in seconds
+  var delay = 0.15;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath14.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -393,11 +392,11 @@ breath15.matrix = breath15Coord;
 breath15.matrix.translate(-0.05, 0.02, 0.0);
 breath15.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.16; // Delay in seconds
+  var delay = 0.16;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath15.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -413,11 +412,11 @@ breath16.matrix = breath16Coord;
 breath16.matrix.translate(0.0, -0.09, 0.0);
 breath16.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.17; // Delay in seconds
+  var delay = 0.17;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath16.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -433,11 +432,11 @@ breath17.matrix = breath17Coord;
 breath17.matrix.translate(0.05, 0.02, 0.0);
 breath17.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.18; // Delay in seconds
+  var delay = 0.18;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath17.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -453,11 +452,11 @@ breath18.matrix = breath18Coord;
 breath18.matrix.translate(0.1, -0.12, 0.0);
 breath18.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.19; // Delay in seconds
+  var delay = 0.19;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath18.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -473,11 +472,11 @@ breath19.matrix = breath19Coord;
 breath19.matrix.translate(0.15, 0.02, 0.0);
 breath19.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.20; // Delay in seconds
+  var delay = 0.20;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath19.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -493,11 +492,11 @@ breath20.matrix = breath20Coord;
 breath20.matrix.translate(-0.25, 0.0, 0.0);
 breath20.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.21; // Delay in seconds
+  var delay = 0.21;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath20.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -513,11 +512,11 @@ breath21.matrix = breath21Coord;
 breath21.matrix.translate(-0.2, -0.16, 0.0);
 breath21.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.22; // Delay in seconds
+  var delay = 0.22;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath21.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -533,11 +532,11 @@ breath22.matrix = breath22Coord;
 breath22.matrix.translate(0.2, -0.02, 0.0);
 breath22.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.23; // Delay in seconds
+  var delay = 0.23;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath22.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -553,11 +552,11 @@ breath23.matrix = breath23Coord;
 breath23.matrix.translate(-0.08, -0.02, 0.0);
 breath23.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.24; // Delay in seconds
+  var delay = 0.24;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath23.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -573,11 +572,11 @@ breath24.matrix = breath24Coord;
 breath24.matrix.translate(0.07, -0.18, 0.0);
 breath24.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.25; // Delay in seconds
+  var delay = 0.25;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath24.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -593,11 +592,11 @@ breath25.matrix = breath25Coord;
 breath25.matrix.translate(0, -0.02, 0.0);
 breath25.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.26; // Delay in seconds
+  var delay = 0.26;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath25.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -613,11 +612,11 @@ breath26.matrix = breath26Coord;
 breath26.matrix.translate(0.03, -0.02, 0.0);
 breath26.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.27; // Delay in seconds
+  var delay = 0.27;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath26.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -633,11 +632,11 @@ breath27.matrix = breath27Coord;
 breath27.matrix.translate(-0.07, -0.02, 0.0);
 breath27.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.28; // Delay in seconds
+  var delay = 0.28;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath27.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -653,11 +652,11 @@ breath28.matrix = breath28Coord;
 breath28.matrix.translate(0.05, -0.12, 0.0);
 breath28.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.29; // Delay in seconds
+  var delay = 0.29;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath28.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -673,11 +672,11 @@ breath29.matrix = breath29Coord;
 breath29.matrix.translate(-0.1, -0.06, 0.0);
 breath29.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.30; // Delay in seconds
+  var delay = 0.30;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath29.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -693,11 +692,11 @@ breath30.matrix = breath30Coord;
 breath30.matrix.translate(0.1, -0.09, 0.0);
 breath30.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.31; // Delay in seconds
+  var delay = 0.31;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath30.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -713,11 +712,11 @@ breath31.matrix = breath31Coord;
 breath31.matrix.translate(-0.18, 0.015, 0.0);
 breath31.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.32; // Delay in seconds
+  var delay = 0.32;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath31.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -733,11 +732,11 @@ breath32.matrix = breath32Coord;
 breath32.matrix.translate(0.22, -0.025, 0.0);
 breath32.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.33; // Delay in seconds
+  var delay = 0.33;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath32.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -753,11 +752,11 @@ breath33.matrix = breath33Coord;
 breath33.matrix.translate(-0.19, 0.018, 0.0);
 breath33.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.34; // Delay in seconds
+  var delay = 0.34;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath33.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -773,11 +772,11 @@ breath34.matrix = breath34Coord;
 breath34.matrix.translate(0.2, 0.022, 0.0);
 breath34.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.35; // Delay in seconds
+  var delay = 0.35;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath34.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -793,11 +792,11 @@ breath35.matrix = breath35Coord;
 breath35.matrix.translate(-0.17, -0.19, 0.0);
 breath35.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.36; // Delay in seconds
+  var delay = 0.36;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath35.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -813,11 +812,11 @@ breath36.matrix = breath36Coord;
 breath36.matrix.translate(0.13, -0.024, 0.0);
 breath36.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.37; // Delay in seconds
+  var delay = 0.37;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath36.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -833,11 +832,11 @@ breath37.matrix = breath37Coord;
 breath37.matrix.translate(-0.11, -0.117, 0.0);
 breath37.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.38; // Delay in seconds
+  var delay = 0.38;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath37.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -853,11 +852,11 @@ breath38.matrix = breath38Coord;
 breath38.matrix.translate(0.09, 0.023, 0.0);
 breath38.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.39; // Delay in seconds
+  var delay = 0.39;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath38.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -873,11 +872,11 @@ breath39.matrix = breath39Coord;
 breath39.matrix.translate(-0.12, 0.021, 0.0);
 breath39.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.40; // Delay in seconds
+  var delay = 0.40;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath39.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -893,11 +892,11 @@ breath40.matrix = breath40Coord;
 breath40.matrix.translate(0.14, -0.12, 0.0);
 breath40.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.41; // Delay in seconds
+  var delay = 0.41;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath40.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -913,11 +912,11 @@ breath41.matrix = breath41Coord;
 breath41.matrix.translate(-0.19, 0.024, 0.0);
 breath41.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.42; // Delay in seconds
+  var delay = 0.42;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath41.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -933,11 +932,11 @@ breath42.matrix = breath42Coord;
 breath42.matrix.translate(0.21, 0.017, 0.0);
 breath42.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.43; // Delay in seconds
+  var delay = 0.43;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath42.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -953,11 +952,11 @@ breath43.matrix = breath43Coord;
 breath43.matrix.translate(-0.06, -0.022, 0.0);
 breath43.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.44; // Delay in seconds
+  var delay = 0.44;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath43.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -973,11 +972,11 @@ breath44.matrix = breath44Coord;
 breath44.matrix.translate(0.12, -0.019, 0.0);
 breath44.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.45; // Delay in seconds
+  var delay = 0.45;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath44.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -993,11 +992,11 @@ breath45.matrix = breath45Coord;
 breath45.matrix.translate(-0.16, 0.013, 0.0);
 breath45.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.46; // Delay in seconds
+  var delay = 0.46;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath45.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1013,11 +1012,11 @@ breath46.matrix = breath46Coord;
 breath46.matrix.translate(0.18, -0.018, 0.0);
 breath46.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.47; // Delay in seconds
+  var delay = 0.47;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath46.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1033,11 +1032,11 @@ breath47.matrix = breath47Coord;
 breath47.matrix.translate(-0.11, 0.021, 0.0);
 breath47.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.48; // Delay in seconds
+  var delay = 0.48;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath47.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1053,11 +1052,11 @@ breath48.matrix = breath48Coord;
 breath48.matrix.translate(0.19, -0.2, 0.0);
 breath48.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.49; // Delay in seconds
+  var delay = 0.49;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath48.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1073,11 +1072,11 @@ breath49.matrix = breath49Coord;
 breath49.matrix.translate(-0.03, 0.004, 0.0);
 breath49.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.50; // Delay in seconds
+  var delay = 0.50;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath49.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1093,11 +1092,11 @@ breath50.matrix = breath50Coord;
 breath50.matrix.translate(0.15, 0.017, 0.0);
 breath50.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.51; // Delay in seconds
+  var delay = 0.51;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath50.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1113,11 +1112,11 @@ breath51.matrix = breath51Coord;
 breath51.matrix.translate(-0.12, 0.002, 0.0);
 breath51.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.52; // Delay in seconds
+  var delay = 0.52;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath51.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1133,11 +1132,11 @@ breath52.matrix = breath52Coord;
 breath52.matrix.translate(0.13, -0.16, 0.0);
 breath52.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.53; // Delay in seconds
+  var delay = 0.53;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath52.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1153,11 +1152,11 @@ breath53.matrix = breath53Coord;
 breath53.matrix.translate(-0.09, 0.013, 0.0);
 breath53.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.54; // Delay in seconds
+  var delay = 0.54;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath53.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1173,11 +1172,11 @@ breath54.matrix = breath54Coord;
 breath54.matrix.translate(0.07, 0.011, 0.0);
 breath54.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.55; // Delay in seconds
+  var delay = 0.55;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath54.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1193,11 +1192,11 @@ breath55.matrix = breath55Coord;
 breath55.matrix.translate(-0.15, 0.001, 0.0);
 breath55.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.56; // Delay in seconds
+  var delay = 0.56;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath55.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1213,11 +1212,11 @@ breath56.matrix = breath56Coord;
 breath56.matrix.translate(0.13, -0.12, 0.0);
 breath56.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.57; // Delay in seconds
+  var delay = 0.57;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath56.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1233,11 +1232,11 @@ breath57.matrix = breath57Coord;
 breath57.matrix.translate(-0.11, 0.024, 0.0);
 breath57.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.58; // Delay in seconds
+  var delay = 0.58;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath57.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1253,11 +1252,11 @@ breath58.matrix = breath58Coord;
 breath58.matrix.translate(0.15, 0.017, 0.0);
 breath58.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.59; // Delay in seconds
+  var delay = 0.59;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath58.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1273,11 +1272,11 @@ breath59.matrix = breath59Coord;
 breath59.matrix.translate(-0.12, -0.022, 0.0);
 breath59.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.60; // Delay in seconds
+  var delay = 0.60;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath59.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1293,11 +1292,11 @@ breath60.matrix = breath60Coord;
 breath60.matrix.translate(0.02, -0.19, 0.0);
 breath60.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.61; // Delay in seconds
+  var delay = 0.61;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath60.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1313,11 +1312,11 @@ breath61.matrix = breath61Coord;
 breath61.matrix.translate(-0.13, -0.123, 0.0);
 breath61.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.62; // Delay in seconds
+  var delay = 0.62;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath61.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1333,11 +1332,11 @@ breath62.matrix = breath62Coord;
 breath62.matrix.translate(0.08, 0.018, 0.0);
 breath62.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.63; // Delay in seconds
+  var delay = 0.63;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath62.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1353,11 +1352,11 @@ breath63.matrix = breath63Coord;
 breath63.matrix.translate(-0.1, -0.21, 0.0);
 breath63.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.64; // Delay in seconds
+  var delay = 0.64;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath63.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1373,11 +1372,11 @@ breath64.matrix = breath64Coord;
 breath64.matrix.translate(0.19, 0.02, 0.0);
 breath64.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.65; // Delay in seconds
+  var delay = 0.65;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath64.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1393,11 +1392,11 @@ breath65.matrix = breath65Coord;
 breath65.matrix.translate(0, -0.124, 0.0);
 breath65.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.66; // Delay in seconds
+  var delay = 0.66;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath65.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1413,11 +1412,11 @@ breath66.matrix = breath66Coord;
 breath66.matrix.translate(0.02, -0.087, 0.0);
 breath66.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.67; // Delay in seconds
+  var delay = 0.67;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath66.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1433,11 +1432,11 @@ breath67.matrix = breath67Coord;
 breath67.matrix.translate(-0.13, -0.122, 0.0);
 breath67.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.68; // Delay in seconds
+  var delay = 0.68;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath67.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1453,11 +1452,11 @@ breath68.matrix = breath68Coord;
 breath68.matrix.translate(0.13, 0.019, 0.0);
 breath68.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.69; // Delay in seconds
+  var delay = 0.69;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath68.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1473,11 +1472,11 @@ breath69.matrix = breath69Coord;
 breath69.matrix.translate(-0.11, -0.123, 0.0);
 breath69.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.70; // Delay in seconds
+  var delay = 0.70;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath69.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1493,11 +1492,11 @@ breath70.matrix = breath70Coord;
 breath70.matrix.translate(0.09, -0.08, 0.0);
 breath70.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.71; // Delay in seconds
+  var delay = 0.71;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath70.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1513,11 +1512,11 @@ breath71.matrix = breath71Coord;
 breath71.matrix.translate(-0.05, 0.022, 0.0);
 breath71.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.72; // Delay in seconds
+  var delay = 0.72;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath71.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1533,11 +1532,11 @@ breath72.matrix = breath72Coord;
 breath72.matrix.translate(0.02, -0.019, 0.0);
 breath72.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.73; // Delay in seconds
+  var delay = 0.73;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath72.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1553,11 +1552,11 @@ breath73.matrix = breath73Coord;
 breath73.matrix.translate(-0.13, 0.023, 0.0);
 breath73.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.74; // Delay in seconds
+  var delay = 0.74;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath73.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1573,11 +1572,11 @@ breath74.matrix = breath74Coord;
 breath74.matrix.translate(0, 0.018, 0.0);
 breath74.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.75; // Delay in seconds
+  var delay = 0.75;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath74.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1593,11 +1592,11 @@ breath75.matrix = breath75Coord;
 breath75.matrix.translate(-0.11, -0.121, 0.0);
 breath75.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.76; // Delay in seconds
+  var delay = 0.76;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath75.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1613,11 +1612,11 @@ breath76.matrix = breath76Coord;
 breath76.matrix.translate(0.09, -0.2, 0.0);
 breath76.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.77; // Delay in seconds
+  var delay = 0.77;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath76.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1633,11 +1632,11 @@ breath77.matrix = breath77Coord;
 breath77.matrix.translate(-0.12, 0.024, 0.0);
 breath77.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.78; // Delay in seconds
+  var delay = 0.78;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath77.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1653,11 +1652,11 @@ breath78.matrix = breath78Coord;
 breath78.matrix.translate(0.12, 0.017, 0.0);
 breath78.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.79; // Delay in seconds
+  var delay = 0.79;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath78.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1673,11 +1672,11 @@ breath79.matrix = breath79Coord;
 breath79.matrix.translate(-0.03, -0.122, 0.0);
 breath79.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.80; // Delay in seconds
+  var delay = 0.80;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath79.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1693,11 +1692,11 @@ breath80.matrix = breath80Coord;
 breath80.matrix.translate(0.08, -0.019, 0.0);
 breath80.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.81; // Delay in seconds
+  var delay = 0.81;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath80.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1713,11 +1712,11 @@ breath81.matrix = breath81Coord;
 breath81.matrix.translate(-0.2, 0.023, 0.0);
 breath81.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.82; // Delay in seconds
+  var delay = 0.82;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath81.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1733,11 +1732,11 @@ breath82.matrix = breath82Coord;
 breath82.matrix.translate(0.09, -0.118, 0.0);
 breath82.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.83; // Delay in seconds
+  var delay = 0.83;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath82.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1753,11 +1752,11 @@ breath83.matrix = breath83Coord;
 breath83.matrix.translate(-0.02, -0.122, 0.0);
 breath83.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.84; // Delay in seconds
+  var delay = 0.84;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath83.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1773,11 +1772,11 @@ breath84.matrix = breath84Coord;
 breath84.matrix.translate(0.02, -0.09, 0.0);
 breath84.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.85; // Delay in seconds
+  var delay = 0.85;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath84.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1793,11 +1792,11 @@ breath85.matrix = breath85Coord;
 breath85.matrix.translate(-0.03, 0.023, 0.0);
 breath85.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.86; // Delay in seconds
+  var delay = 0.86;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath85.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1813,11 +1812,11 @@ breath86.matrix = breath86Coord;
 breath86.matrix.translate(0.08, -0.118, 0.0);
 breath86.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.87; // Delay in seconds
+  var delay = 0.87;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath86.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1833,11 +1832,11 @@ breath87.matrix = breath87Coord;
 breath87.matrix.translate(-0.11, 0.021, 0.0);
 breath87.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.88; // Delay in seconds
+  var delay = 0.88;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath87.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1853,11 +1852,11 @@ breath88.matrix = breath88Coord;
 breath88.matrix.translate(0.09, -0.2, 0.0);
 breath88.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.89; // Delay in seconds
+  var delay = 0.89;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath88.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1873,11 +1872,11 @@ breath89.matrix = breath89Coord;
 breath89.matrix.translate(-0.02, 0.024, 0.0);
 breath89.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.90; // Delay in seconds
+  var delay = 0.90;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath89.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1893,11 +1892,11 @@ breath90.matrix = breath90Coord;
 breath90.matrix.translate(0.12, -0.117, 0.0);
 breath90.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.91; // Delay in seconds
+  var delay = 0.91;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath90.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1913,11 +1912,11 @@ breath91.matrix = breath91Coord;
 breath91.matrix.translate(-0.03, -0.16, 0.0);
 breath91.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.92; // Delay in seconds
+  var delay = 0.92;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath91.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1933,11 +1932,11 @@ breath92.matrix = breath92Coord;
 breath92.matrix.translate(0.18, 0.019, 0.0);
 breath92.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.93; // Delay in seconds
+  var delay = 0.93;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath92.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1953,11 +1952,11 @@ breath93.matrix = breath93Coord;
 breath93.matrix.translate(-0.11, 0.023, 0.0);
 breath93.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.94; // Delay in seconds
+  var delay = 0.94;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath93.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1973,11 +1972,11 @@ breath94.matrix = breath94Coord;
 breath94.matrix.translate(0.09, 0.018, 0.0);
 breath94.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.95; // Delay in seconds
+  var delay = 0.95;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath94.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -1993,11 +1992,11 @@ breath95.matrix = breath95Coord;
 breath95.matrix.translate(-0.12, 0.022, 0.0);
 breath95.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.96; // Delay in seconds
+  var delay = 0.96;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath95.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -2013,11 +2012,11 @@ breath96.matrix = breath96Coord;
 breath96.matrix.translate(0.02, 0.019, 0.0);
 breath96.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.97; // Delay in seconds
+  var delay = 0.97;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath96.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -2033,11 +2032,11 @@ breath97.matrix = breath97Coord;
 breath97.matrix.translate(-0.13, 0.023, 0.0);
 breath97.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.98; // Delay in seconds
+  var delay = 0.98;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath97.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -2053,11 +2052,11 @@ breath98.matrix = breath98Coord;
 breath98.matrix.translate(0.08, 0.018, 0.0);
 breath98.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 0.99; // Delay in seconds
+  var delay = 0.99;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath98.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -2073,11 +2072,11 @@ breath99.matrix = breath99Coord;
 breath99.matrix.translate(-0.01, 0.021, 0.0);
 breath99.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 1.00; // Delay in seconds
+  var delay = 1.00;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath99.matrix.translate(0.0, translation/1.5, translation);
     } else {
@@ -2093,11 +2092,11 @@ breath100.matrix = breath100Coord;
 breath100.matrix.translate(0.09, 0.02, 0.0);
 breath100.matrix.scale(0.1, 0.1, 0.1);
 if (g_animation === true) {
-  var delay = 1.01; // Delay in seconds
+  var delay = 1.01;     
   var adjustedSeconds = g_seconds - delay;
   if (adjustedSeconds >= 0) {
-    var progress = (adjustedSeconds % 1) / 0.06; // Calculate the progress (0 to 1) over 0.2 seconds
-    var translation = progress * 4; // Calculate the translation value (0 to 4)
+    var progress = (adjustedSeconds % 1) / 0.06; 
+    var translation = progress * 4;    
     if (progress < 1) {
       breath100.matrix.translate(0.0, translation/1.5, translation);
     } else {

@@ -121,7 +121,6 @@ function addActionsForHtmlUI(){
     document.getElementById('angleSlide').addEventListener('mousemove', function() {g_globalAngle=this.value; renderAllShapes(); });
     document.getElementById('legSlide').addEventListener('mousemove', function() {g_legAngle=this.value; renderAllShapes(); });
     document.getElementById('bodySlide').addEventListener('mousemove', function() {g_bodyAngle=this.value; renderAllShapes(); });
-    document.getElementById('bodySlide2').addEventListener('mousemove', function() {g_bodyAngle2=this.value; renderAllShapes(); });
     document.getElementById('tailSlide').addEventListener('mousemove', function() {g_tailAngle=this.value; renderAllShapes(); });
     document.getElementById('tailSlide2').addEventListener('mousemove', function() {g_tailAngle2=this.value; renderAllShapes(); });
     document.getElementById('mouthSlide').addEventListener('mousemove', function() {g_mouthAngle=this.value; renderAllShapes(); });
@@ -323,6 +322,8 @@ function renderAllShapes(){
   tLeftleg.matrix.translate(-0.05,-0.25,0);
   tLeftleg.render();
 
+
+  
   //Body
   var body = new Cube();
   body.color=[0.2,0.2,0.2,1.0];
@@ -333,8 +334,8 @@ function renderAllShapes(){
   //body.matrix.rotate(g_bodyAngle2,0,1,0);
   body.matrix.translate(-0.65,0.2,0.1);
   if(g_animation==true){
-    if(g_seconds>31.5){
-      body.matrix.rotate(-Math.abs(45*Math.sin(g_seconds/5)),1,0,0);//39.5 sec
+    if(g_seconds>15.5){
+      body.matrix.rotate(-Math.abs(45*Math.sin(g_seconds/5)),1,0,0);
 
     }
     //armRight.matrix.rotate(45*Math.sin(g_seconds/1),0,1,0);
@@ -527,7 +528,7 @@ function renderAllShapes(){
     
   }
   else{
-    mouthBottom.matrix.rotate(g_headAngle,1,0,0);
+    mouthBottom.matrix.rotate(g_mouthAngle,1,0,0);
 
   }
   mouthBottom.matrix.rotate(g_mouthAngle,1,0,0);
@@ -927,7 +928,7 @@ function renderAllShapes(){
     
   } 
   spikeTailSeven.render();
-  if(g_seconds>34){
+  if(g_seconds>32){
     breathTime(BreathCoord1);
   }
 
@@ -942,13 +943,7 @@ function renderAllShapes(){
 
 
 
-  //middleMarker
-  var m = new Cube();
-  m.color=[1,0.2,0.2,1.0];
-  m.matrix.scale(0.001,2,0.001);
-  m.matrix.translate(0,-0.5,0);
-  m.render();
-
+  
   var duration = performance.now() - startTime;
   sendTextToHTML(" ms: " +  Math.floor(duration) + " fps " + Math.floor(10000/duration)/10, "numdot")
 }

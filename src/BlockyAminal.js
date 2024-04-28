@@ -115,6 +115,7 @@ let poke=false;
 
 
 
+
 //let g_segNum=10;
 
 function addActionsForHtmlUI(){
@@ -126,10 +127,9 @@ function addActionsForHtmlUI(){
     document.getElementById('tailSlide2').addEventListener('input', function() {g_tailAngle2=this.value; renderAllShapes(); });
     document.getElementById('mouthSlide').addEventListener('input', function() {g_mouthAngle=this.value; renderAllShapes(); });
     document.getElementById('rightArmSlide').addEventListener('input', function() {g_rightArmAngle=this.value; renderAllShapes(); });
-    document.getElementById('spikeColorSlide').addEventListener('input', function() {g_spikeColor = parseFloat(this.value); renderAllShapes(); });
-    document.getElementById('start').onclick = function() {g_animation=true; g_startTime=null; g_quick=false; tick();};
-    document.getElementById('stop').onclick = function() {g_animation=false; g_startTime=null; renderAllShapes();};
-    document.getElementById('quick').onclick = function() {g_animation=true; g_startTime=null; g_quick=true; tick();};
+    document.getElementById('start').onclick = function() {g_animation=true; g_startTime=null; g_quick=false; poke=false; tick();};
+    document.getElementById('stop').onclick = function() {g_animation=false; g_startTime=null; poke=false; renderAllShapes();};
+    document.getElementById('quick').onclick = function() {g_animation=true; g_startTime=null; poke=false; g_quick=true; tick();};
 
 
 
@@ -141,9 +141,16 @@ function main() {
     setupWebGl();
     connectVariablesToGLSL();
     addActionsForHtmlUI();
-  // Register function (event handler) to be called on a mouse press
-  canvas.onmousedown = click;
-  canvas.onmousemove = function(ev) {if(ev.buttons == 1)  {click(ev) } };
+  
+  canvas.onmousedown = function(ev) {
+    if (ev.shiftKey) {
+        poke = true;
+        g_animation = true;
+        g_startTime = null;
+        g_quick = false;
+        tick();
+    }
+};
 
   // Specify the color for clearing <canvas>
   gl.clearColor(0.6, 0.8, 1.0, 1.0);
@@ -165,11 +172,10 @@ let timerInterval;
 let gameStarted=false;
 
 function click(ev) {
-  poke=true;
-  g_animation=true;
-  g_startTime=null;
-  g_quick=false;
-  tick();
+  poke = true;
+  g_animation = true;
+  g_startTime = null;
+  g_quick = false;
 }
 
 function convertCoordinatesEventToGl(ev){
@@ -206,7 +212,7 @@ function renderAllShapes(){
 
   var globalRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0);
 
-  if(g_animation==true){
+  if(g_animation==true&&poke==true){
     var rotationAngle = (g_seconds) * 100; 
     globalRotMat.rotate(rotationAngle, 0, 1, 0);
     
